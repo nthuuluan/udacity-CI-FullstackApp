@@ -1,6 +1,4 @@
-// app.js
-import express from 'express';
-
+const express = require('express');
 const app = express();
 const port = 3000;
 
@@ -12,4 +10,4 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
-export default app; // export for testing
+module.exports = app;  // export for testing
