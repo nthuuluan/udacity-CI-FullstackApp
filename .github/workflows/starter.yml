@@ -28,6 +28,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       
+      - run: cd backend && npm install
+      
       # Install the dependencies.
       - run: cd backend && npm ci
 
