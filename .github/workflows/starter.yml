@@ -28,9 +28,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       
-      #Remove node_modules
-      - run: rm -rf node_modules
-
       # Install the dependencies.
       - run: cd backend && npm ci
 
