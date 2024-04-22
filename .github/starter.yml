@@ -1,11 +1,13 @@
-name: Node.js Test and Lint
+name: ci-fullstack-workflow
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0' # Every Sunday at midnight
   push:
     branches:
       - main
-    schedule:
-      - cron: '0 0 * * 0' # Every Sunday at midnight
+    
 
 jobs:
   build:
@@ -16,21 +18,21 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install Dependencies
-        run: npm install
+        run: cd backend && npm install
 
       - name: Run Tests
-        run: npm test
+        run: cd backend && npm test
 
       - name: Lint Code
-        run: npm run lint
+        run: cd backend && npm run lint
 
       - name: Print Completion Message
         run: echo "Hello ${{ github.actor }}. You pushed to ${{ github.repository }} at ${{ github.event.created_at }}."
